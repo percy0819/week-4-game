@@ -1,0 +1,26 @@
+body {
+
+    background-image: "BG1.JPG";
+}
+page-header {
+	background-color: lightblue;
+	text
+
+}
+.bg1 {
+	width: 600px;
+	height: 300px;
+}
+div {
+	background-color: #F08080;
+	width: 200px;
+}
+#fixed {
+	position: fixed;
+	background-color: #F08080;
+	padding: 40px;
+	text-align: center;
+	margin: 0;
+	top: 0;
+	left: 0;	
+}

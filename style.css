@@ -1,0 +1,35 @@
+body {
+
+    background-image: url("./assets/images/BG1.JPG");
+}
+html {
+    background-image: "bg1.jpg" ;
+    background-size: cover;
+	width: 600px;
+	height: 300px;
+}
+header {
+  padding: 30px;
+  margin-bottom: 30px; <! space between header and section>
+  /*color: #FF1493; */
+  /*background: #ff1493;
+  font-weight: bold;
+  align-content: center;*/
+
+}
+h4{
+  padding: 28px;
+  /*margin-bottom: 20px; <! space between header and section> */
+  color: #3CB371;
+  background: #FFFACD;
+  font-weight: bold;
+  align-content: center;
+  font-size: 180%;
+}
+#message1 {
+	float: left;
+	text-align: left;
+	margin-bottom: 40px;
+	padding: 20px;
+
+}

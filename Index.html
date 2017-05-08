@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CRYSTAL COLLECTOR</title>
+	<meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/darkly/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 style="background-color:#FF1493;font-size: 400%;text-align: center;">Crystal Collector!</h1>
+        <div class="Message">
+        <h4>You will be given a random number at the start of the game. </h4>
+        <h4>There are four crystal below. By clicking on a crystal you will add a specific amount of points to your total score. </h4>
+        <h4>You win the game by matching your total score to ramdon number, you lose the game if your total score goes above the ramdon number.</h4>
+        <h4>The value of each crystal is hidden from you until you click on it.</h4>
+        <h4>Each time the game starts, the game will change the values of each crystal.</h4>
+        </div>
+        <div class="row">
+          <div class="col-xs-3"><img style="height:150px; width: 70%;" class="img-responsive fiery" src="./assets/images/d1.jpg"></div>
+          <div class="col-xs-3"><img style="height:150px; width: 70%;" class="img-responsive fiery" src="./assets/images/d2.jpg"></div>
+          <div class="col-xs-3"><img style="height:150px; width: 70%;" class="img-responsive fiery" src="./assets/images/d3.jpg"></div>
+          <div class="col-xs-3"><img style="height:150px; width: 70%;" class="img-responsive fiery" src="./assets/images/d4.jpg"></div>
+          <div clas="row">
+            <div class="col-xs-6"><h1 style="color:black;padding: 50px;background: #3CB371;"> Number: <span id="randomScoreDisplay"></span></h1></div>
+            <div class="col-xs-6">
+            <h1 style="color:black;padding: 50px;background: #48D1CC;"> Win: <span id="winsDisplay"></span></h1>
+            </div>
+            <div class="col-xs-6">
+            <h1 style="color:black;padding: 50px;background: #48D1CC;"> Losses: <span id="lossesDisplay"></span></h1>
+          </div>
+          <div class="col-xs-6">
+            <h1 style="color:black;padding: 50px;background: #48D1CC;"> Your Total Score: <span id="totalScoreDisplay"></span></h1>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+</body>
+<script type="text/javascript">
+// GRABBING HTML ELEMENTS
+var winsDisplay = $("#winsDisplay")[0];
+console.log(winsDisplay);
+
+var lossesDisplay = $("#lossesDisplay")[0];
+console.log(lossesDisplay);
+
+var randomScoreDisplay = $("#randomScoreDisplay")[0];
+console.log(randomScoreDisplay);
+
+var totalScoreDisplay = $("#totalScoreDisplay")[0];
+console.log(totalScoreDisplay);
+
+var fieryArray = $(".fiery");
+console.log(fieryArray);
+
+var winsCounter = 0;
+var lossesCounter = 0;
+var randomScore = randomScoreGenerator(19, 120);
+var userScore = 0;
+
+//==================================
+function randomScoreGenerator(min, max) {
+  return Math.floor(Math.random() * max + min)
+}
+
+function giveGuyFieriSomeValue() {
+  for (var i = 0; i < fieryArray.length; i++) {
+    fieryArray[i].value = randomScoreGenerator(1, 12)
+  }
+}
+
+function startGame() {
+  $(winsDisplay).html(winsCounter);
+  $(lossesDisplay).html(lossesCounter);
+  $(randomScoreDisplay).html(randomScore);
+  $(totalScoreDisplay).html(userScore);
+  giveGuyFieriSomeValue();
+}
+
+function winLossChecker() {
+  if (randomScore === userScore) {
+    alert("YEAAAAAAAAAAAAAAAAAAH!")
+    winsCounter++;
+    $(winsDisplay).html(winsCounter)
+    reset()
+  } else if (randomScore < userScore) {
+    alert("I dropped my onion rings")
+    lossesCounter++;
+    $(lossesDisplay).html(lossesCounter)
+    reset()
+  }
+}
+
+function reset() {
+  userScore = 0;
+  randomScore = randomScoreGenerator(19, 120);
+  giveGuyFieriSomeValue();
+  $(winsDisplay).html(winsCounter);
+  $(lossesDisplay).html(lossesCounter);
+  $(randomScoreDisplay).html(randomScore);
+  $(totalScoreDisplay).html(userScore);
+}
+//==================================
+
+startGame();
+
+$(fieryArray).on("click", function(event) {
+  // console.log(event);
+  // console.log(this);
+  console.log(this.value);
+  var guyFieriValue = this.value;
+  userScore = userScore + guyFieriValue;
+  console.log(userScore);
+  $(totalScoreDisplay).html(userScore);
+  winLossChecker();
+
+})
+</script>
+</html>
